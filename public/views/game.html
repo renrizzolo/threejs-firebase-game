@@ -1,0 +1,90 @@
+<div id="loading"><h1>Loadinerg</h1></div>
+<div class="menu">
+<div class="col">
+
+  <div class="Lives">
+  Lives: 
+  <i id="life">5</i>
+
+  </div>
+  <div class="score">
+  Score:
+
+  <i id="score">0</i>
+    
+  </div>
+    
+</div>
+
+<div class="col">
+      <span> <img style="width:20px;" src="/images/coin.png" alt=""> {{gemsCollected}}</span>
+      <span> <img style="width:20px;" src="/images/diamond.png" alt=""> {{supergemsCollected}}</span>
+      <span> <img style="width:20px;" src="/images/movingsupergem.png" alt=""> {{movingSupergemsCollected}}</span>
+</div>
+<!-- <div class="col">
+  <form ng-submit="signIn()" ng-hide="firebaseUser">
+    <input type="text" ng-model="displayName"/>
+    <button  class="button" ng-click="signIn()">Sign In</button>
+  </form>
+</div> -->
+<div class="col">
+  <span ng-if="firebaseUser">Signed in as: <strong>{{ data.name }}</strong></span>
+  <span ng-if="error">Error: <strong>{{ error }}</strong></span>
+  <button ng-if="firebaseUser" class="button" ng-click="signOut()">Sign out</button>
+
+  </div>
+  <div class="col">
+
+  <span>High score:</span> 
+    <div class="score">
+
+  <div id="highScore">{{data.score}}</div>
+  </div>
+</div>
+
+
+  <div class="col">
+<span><small> Now playing:<a class="link" target="_blank" href="{{trackUrl}}">{{title}}</a> </small></span> <button class="button" id="songPlay" ng-click="play()">stop</button>
+</div>
+</div>
+
+<div id="hurt">
+
+</div>
+<div id="visualisation">
+</div>
+<ul class="highscores">
+  <li ng-repeat="user in users | toArray:false | orderBy: '-score'" ng-show="user.score" ng-class="{ 'highlight': user.uid === firebaseUser.uid}"><img ng-if="!user.dp" class="dp" src="/images/user.png" alt=""><img ng-if="user.dp" class="dp" src="{{user.dp}}" alt="">{{user.name}}: {{user.score}}</li>
+</ul>
+<ul class="loggedIn">
+ Online:
+  <li ng-repeat="loggedIn in loggedIns" ng-class="{ 'highlight': loggedIn.uid === firebaseUser.uid}">{{loggedIn.name}}<span ng-if="loggedIn.uid === firebaseUser.uid"> (you)</span>: {{loggedIn.score}}</li>
+</ul>
+<div id="blocker">
+
+  <div id="instructions">
+
+    <div id="riperoo">
+      <span class="button" style="font-size:30px"  onclick="window.location.reload()">Try again</span>
+    
+      <div style="margin-top:25px;" id="finalScore"></div>
+    </div>
+
+      <h3>Mouse & keyboard required.</h3>
+			<span id="playButton" class="button play" style="font-size:35px">Please wait</span>
+			<br />
+			<div>W A S D = Move </div>
+      <div>SPACE = Jump</div>
+      <div>MOUSE = Look</div>
+        <br />
+      <div> <img style="width:20px;" src="/images/coin.png" alt=""> = 5 points</div>
+      <div> <img style="width:20px;" src="/images/diamond.png" alt=""> = 10 points</div>
+      <div> <img style="width:20px;" src="/images/movingsupergem.png" alt=""> = 50 points</div>
+
+  </div>
+
+</div>
+
+<script>
+
+</script>

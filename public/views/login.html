@@ -1,0 +1,19 @@
+
+<div class="signin">
+<div class="container">
+  <form ng-submit="signIn()" ng-hide="firebaseUser">
+  <legend>Sign in Anonymously</legend>
+    <input type="text" required ng-model="displayName" placeholder="name"/>
+    <input  class="button"type="submit" value="Play">
+
+  </form>
+
+  <legend>Sign in with Facebook</legend>
+
+    <button class="button fw fb-login" ng-click="signInWithFb()">Sign in</button>
+</div>
+  <span ng-if="firebaseUser">Signed in as: <strong>{{ data.name }}</strong></span>
+  <span ng-if="error">Error: <strong>{{ error }}</strong></span>
+  <button ng-if="firebaseUser" class="button" ng-click="signOut()">Sign out</button>
+
+  </div>
