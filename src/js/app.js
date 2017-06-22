@@ -44,9 +44,7 @@ app.controller("LoginCtrl", ["$scope", "$location", "$firebase", "$firebaseAuth"
       $scope.firebaseUser = null;
       $scope.error = null;
       $scope.authObj.$signInAnonymously().then(function(firebaseUser){
-       // var ref = firebase.database().ref().child("users/" + firebaseUser.uid);
-       //   $scope.firebaseUser = firebaseUser;
-       //   console.log($scope.displayName)
+
       }).catch(function(error) {
         $scope.error = error;
       });
@@ -91,20 +89,6 @@ app.controller("LoginCtrl", ["$scope", "$location", "$firebase", "$firebaseAuth"
           }
         }
 
-        //    loggedInRef.onDisconnect().remove();
-       //     loggedInRef.child('name').set($scope.displayName);
-
-      //      $scope.firebaseUser = firebaseUser;
-
-            // $scope.setupGame(firebaseUser);
-        //   var syncObject = $firebaseObject(ref);
-  // // synchronize the object with a three-way data binding
-  // // click on `index.html` above to see it used in the DOM!
- //  syncObject.$bindTo($scope, "data");
-            
-    // User is signed in.
-    // ...  
-  //  console.log("Signed in as:", firebaseUser.uid);
 
     $location.path('/game');
     } else {
@@ -139,11 +123,7 @@ app.controller("GameCtrl", ["$scope","$location", "$firebase", "$firebaseAuth", 
           var loggedInRef = firebase.database().ref().child("loggedIn/" + firebaseUser.uid);
           var connectedRef = firebase.database().ref().child(".info/connected");
    
-          // if (ref.child('name').$value === null || typeof ref.child('name').$value === 'undefined'){
-          //     ref.child('name').set($scope.displayName);
-          //     ref.child('uid').set(firebaseUser.uid);
-          // }
-          // console.log(ref.child('name').$value);
+
 
            loggedInRef.onDisconnect().remove();
 
@@ -151,7 +131,6 @@ app.controller("GameCtrl", ["$scope","$location", "$firebase", "$firebaseAuth", 
          // $scope.setupGame(firebaseUser);
           var syncObject = $firebaseObject(ref);
         // // synchronize the object with a three-way data binding
-        // // click on `index.html` above to see it used in the DOM!
           syncObject.$bindTo($scope, "data");
 
           $scope.firebaseUser = firebaseUser;
@@ -191,7 +170,7 @@ app.controller("GameCtrl", ["$scope","$location", "$firebase", "$firebaseAuth", 
 
 
         $scope.signOut = function() {
-          // var loggedInRef = firebase.database().ref().child("loggedIn/" + firebaseUser.uid);
+
           var obj = $firebaseObject(loggedInRef);
           console.log(obj)
           obj.$remove().then(function(loggedInRef) {
@@ -218,32 +197,7 @@ app.controller("GameCtrl", ["$scope","$location", "$firebase", "$firebaseAuth", 
       init();
       animate(); 
       playTrack();
-      // $scope.resetState = function(){
-      //   life = 5;
-      //   lifeDiv.innerHTML = '5';
-      //   score = 0;
-      //   scoreDiv.innerHTML = '0';
-      //   $('#riperoo').hide();
-      //   playButtonDiv.style.display = 'block';
-      //   pointerLock();
-      //   removeMesh();
-      //   renderer = null;
-      //   first = true;
-      //   scene = null;
-      //   camera = null;
-      //   controls = null;
-      //   mesh = null;
-      //   geometry = null;
-      //   gem = [];
-      //   blocks = [];
-      //   bouncy = [];
-      //   supergem = [];
-      //   movingSupergem = [];
-      //   $scope.updateScore(0);
-    
-      //   init();
-      //   animate();
-      // }; 
+ 
   } else {
     // User is signed out.
     // ...
@@ -257,48 +211,16 @@ app.controller("GameCtrl", ["$scope","$location", "$firebase", "$firebaseAuth", 
     
     });
 
-        // $scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
-        //   $scope.setupGame(authData);
-        // }, function(error) {
-        //    console.error("Login failed: ", error);
-        // });
 
          /* Sets up the current game (making a new one if needed) */
 $scope.data = [];  
 
     var usersRef = firebase.database().ref().child("users");
-  //  var syncObject = $firebaseObject(usersRef);
-   // syncObject.$bindTo($scope, "users");
+
     var query = usersRef.orderByChild("score").limitToLast(10);
 
     $scope.users = $firebaseArray(query);
-  
-  //     $scope.setupGame = function(firebaseUser) {
-  //       var ref = firebase.database().ref().child("users/" + firebaseUser.uid);
 
-  //       //  $scope.users = $firebaseArray(ref);
-  // //     ref.child('displayName').on('value', function (snapshot) {
-  // //   firebaseUser.displayName = snapshot.val();
-  // // });
-  //       // Store the logged-in user locally
-
-  //            // // download the data into a local object
-
-  //           // ref.set({
-  //           //   name:  $scope.displayName,
-  //           //   uid:   firebaseUser.uid,
-  //           //  // score: dbScore
-  //           // }).then(function(ref) {
-  //           //  //   var id = ref.key;
-  //           //    // console.log("added record with id " + id);
-  //           //    // $scope.users.$indexFor(id); // returns location in the array
-  //           // });
-
-
-  //          // $scope.users.$bindTo($scope, "user");
-  //      //   }
-  //      // });
-  //     };
 $scope.setScore = function(score){
    //stop from being able to move
     cancelAnimationFrame( id );
@@ -383,11 +305,9 @@ if ( $scope.firebaseUser ){
       return min + (step * Math.floor(Math.random()*(max-min)/step) );
     }
 
-    //var mouseX = 0, mouseY = 0;
     var windowHalfX = window.innerWidth / 2;
     var windowHalfY = window.innerHeight / 2;
-   //   document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    //soundcloud_get('https://soundcloud.com/renriz/sdgfrdfgdgf/s-06ZYi');
+
   function pointerLock (){ var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
       if ( havePointerLock ) {
         var element = document.body;
@@ -489,7 +409,7 @@ $scope.gemsCollected = 0;
 
     function init() {
      
-        //camera
+    //camera
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.position.y = 10;
     //scene
@@ -502,7 +422,7 @@ $scope.gemsCollected = 0;
         // player = new THREE.Mesh(playerGeom, material)
 
         // scene.add(player)
-      // camera.add(player);
+        // camera.add(player);
 
         //controls
         controls = new THREE.PointerLockControls( camera );
@@ -669,12 +589,10 @@ $scope.gemsCollected = 0;
 
         //spawn
         controls.getObject().position.x = start.position.x;
-       // controls.getObject().position.y = start.position.y;
         controls.getObject().position.z = start.position.z;
 
 
         controls.getObject().position.y = 350;
-        //controls.getObject().velocity.y = 0;
 
   var onKeyDown = function ( event ) {
           switch ( event.keyCode ) {
@@ -784,48 +702,11 @@ function webglAvailable() {
       function render() {
 
         analyser.getByteFrequencyData(frequencyData);
-        // pointLight.position.x = 600 * Math.cos( time );
-        // pointLight.position.z = 300 * Math.sin( time );
-       //
-        //  player.position.copy(controls.getObject().position);
-
-         // player.translateY(25);
-        //for(var i = floor.length -1; i >= 0 ; i--){
-  
-
-        //   if ( player.position.distanceTo( gem.position ) < 2 * sphereRadius ) {
-        //   gem.position.x = gemRange/2 - gemRange * Math.random();// give the gem a random xy coord
-        //   gem.position.y = gemRange/2 - gemRange * Math.random();
-        //   var score = Number(scoreDiv.innerHTML) + 1; // increase score
-        //   scoreDiv.innerHTML = score.toString();
-        //   var best = bestScoreDiv.innerHTML.split(' ');
-        //   if ( score > Number( best[1] ) ) {
-        //     bestScoreDiv.innerHTML = best[0] + " " + score.toString();
-        //   }
-        // }
+   
+      
      var currentSeconds = Date.now();
     camera.updateProjectionMatrix();
-  // var relativeCameraOffset = new THREE.Vector3(0,0,100);
 
-  // var cameraOffset = relativeCameraOffset.applyMatrix4( camera.matrixWorld );
-
-
- //camera.position.copy(controls.getObject().position);
- // player.translateY(0);
- // player.translateX(0);
-
- // camera.lookAt( player);
-  //var zCamVec = new THREE.Vector3(0,0,1);
-  //var position = camera.localToWorld(zCamVec);
-
-//   player.position.set(controls.getObject().position);
-//   player.lookAt(controls.getObject().position);
-// player.translateY(100);
-              //  var volume = analyser2Volume.rawValue();
-                // console.log(volume)
-                // group.position.x = volume * 100;
-              //   mesh.position.y = frequencyData[2] * 0.001;
-                // group.position.y = frequencyData[5] * 0.01;
 
           blockGroup.position.y = frequencyData[1] * 0.04;
 
@@ -833,33 +714,14 @@ function webglAvailable() {
 
           supergem[i].translateY(frequencyData[18] * 0.008);
         };
-               // group.position.x =  frequencyData[1] / 5;
-               // group.position.y =  frequencyData[1] / 5;
-
-              //  group.rotation.y =  frequencyData[1] * 0.0005;
-
-                //group2.position.x =  frequencyData[12] / 2;
-                //group2.position.z =  frequencyData[7] / 5;
-                //group2.position.x =  frequencyData[12];
-
-// camera.position.copy(player.position);
-
-//        camera.position.x += ( mouseX - camera.position.x ) * .03;
-//         camera.position.y += ( - mouseY - camera.position.y ) * .03;
-//         camera.lookAt( player.position );
-
-      //  var currentSeconds = Date.now();
-      //  group.rotation.y = Math.sin( currentSeconds * 0.0003 ) * 0.5;
-       // group.rotation.z = Math.sin( currentSeconds * 0.0002 ) * 0.5;
+   
         if ( controlsEnabled ) {
 
 
         pointLight.position.copy( controls.getObject().position );
         lightMesh.position.copy(controls.getObject().position );
         
-      //  pointLight.rotation.copy( camera.rotation );
-      //  lightMesh.rotation.copy(camera.rotation );
-
+     
         raycaster.ray.origin.copy( controls.getObject().position );
 
         var time = Date.now() * 0.001;
