@@ -136,27 +136,6 @@ $scope.updateScore = function(score){
 };
 
 
-   
-  // game config
-   var settings = {
-     points:{
-      "gem": 5,
-      "supergem": 10,
-      "movingSupergem": 50
-     },
-     amount:{
-      "gems": 30,
-      "supergem": 10,
-      "movingSupergem": 3
-     },
-     fog:{
-      color: 0xffffff,
-      near: 0,
-      far: 800
-     },
-     lives: 5,
-     boxSize: 50,
-  };
 
 
   //set up game sounds
@@ -257,6 +236,29 @@ $scope.updateScore = function(score){
         instructions.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
       }
   }
+
+   
+  // game config
+   var settings = {
+     points:{
+      "gem": 5,
+      "supergem": 10,
+      "movingSupergem": 50
+     },
+     amount:{
+      "gems": 30,
+      "supergem": 10,
+      "movingSupergem": 3
+     },
+     fog:{
+      color: 0xffffff,
+      near: 0,
+      far: 800
+     },
+     lives: 5,
+     boxSize: 50,
+  };
+
   //init game state variables
   var clock = new THREE.Clock(),
       container = document.getElementById( 'visualisation' ),
@@ -306,11 +308,19 @@ $scope.updateScore = function(score){
   $scope.movingSupergemsCollected = 0;
   $scope.gemsCollected = 0;
 
-  $scope.inverted = true;
+  $scope.inverted = localStorage.getItem('inverted') ? true : false;
 
   $scope.invert = function(){
-    $scope.inverted = !$scope.inverted;
-            controls.inverted = $scope.inverted;
+    if (localStorage.getItem('inverted')){
+      $scope.inverted = false;
+      localStorage.removeItem('inverted');
+
+    } else {
+      $scope.inverted = true;
+      localStorage.setItem('inverted', true);
+
+    }
+    controls.inverted = $scope.inverted;
 
   }
 

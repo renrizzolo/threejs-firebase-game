@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
       },
       build: {
-        src: ['src/js/app.js' ],
+        src: ['src/js/app.js', 'src/js/*.js' ],
         dest: 'public/js/app.min.js'
       }
     },
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'cssmin']
       },
        scripts: {
-        files: 'src/js/app.js',
+        files: ['src/js/app.js', 'src/js/*.js'],
         tasks: ['uglify']
       }
     },
