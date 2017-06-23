@@ -32,6 +32,7 @@
   <span ng-if="error">Error: <strong>{{ error }}</strong></span>
   <button ng-if="firebaseUser" class="button" ng-click="signOut()">Sign out</button>
 
+
   </div>
   <div class="col">
 
@@ -44,7 +45,7 @@
 
 
   <div class="col">
-<span><small> Now playing:<a class="link" target="_blank" href="{{trackUrl}}">{{title}}</a> </small></span> <button class="button" id="songPlay" ng-click="play()">stop</button>
+<span><small> Now playing:<a class="link" target="_blank" href="{{trackUrl}}">{{title}}</a> </small></span> <button class="button" id="songPlay" ng-click="play()">stop</button><button class="button" ng-click="mute()">{{muted ? 'unmute' : 'mute'}}</button>
 </div>
 </div>
 
@@ -72,6 +73,9 @@
 
       <h3>Mouse & keyboard required.</h3>
 			<span id="playButton" class="button play" style="font-size:35px">Please wait</span>
+      </br>
+      <button class="button" ng-click="invert()">toggle invert Y axis</button>
+
 			<br />
 			<div>W A S D = Move </div>
       <div>SPACE = Jump</div>

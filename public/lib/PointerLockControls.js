@@ -8,6 +8,7 @@ THREE.PointerLockControls = function ( camera ) {
 
 	camera.rotation.set( 0, 0, 0 );
 	//camera.up.set( 1, 1, 1 );
+  // camera.up.set( 0, 0, 1 );
 
 	var pitchObject = new THREE.Object3D();
 	pitchObject.add( camera );
@@ -18,7 +19,7 @@ THREE.PointerLockControls = function ( camera ) {
 
 	var PI_2 = Math.PI / 2;
 
-	var onMouseMove = function ( event ) {
+	var onMouseMove = function ( event, inverted ) {
 
 		if ( scope.enabled === false ) return;
 
@@ -26,7 +27,12 @@ THREE.PointerLockControls = function ( camera ) {
 		var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
 		yawObject.rotation.y -= movementX * 0.002;
-		pitchObject.rotation.x -= movementY * 0.002;
+
+		if (scope.inverted === true){
+			pitchObject.rotation.x += movementY * 0.002;
+			} else {
+			pitchObject.rotation.x -= movementY * 0.002;
+		}
 
 		// invert axis: pitchObject.rotation.x += movementY * 0.002;
 
